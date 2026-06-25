@@ -1,0 +1,15 @@
+# Cargo & Rust
+/target
+/cargo.lock
+
+# Editor
+/.vscode
+/.vs
+/.idea
+
+# AI
+/.claude
+/claude.md
+
+# Custom
+/temp

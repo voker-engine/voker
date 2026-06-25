@@ -1,0 +1,66 @@
+[workspace]
+resolver = "3"
+members = [ "crates/*" ]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2024"
+rust-version = "1.96"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/voker-engine/voker"
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+unsafe_op_in_unsafe_fn = "warn"
+unused_qualifications = "warn"
+
+[workspace.lints.clippy]
+std_instead_of_core = "warn"
+std_instead_of_alloc = "warn"
+alloc_instead_of_core = "warn"
+
+print_stdout = "warn"
+print_stderr = "warn"
+
+allow_attributes_without_reason = "warn"
+
+type_complexity = "allow"
+too_many_arguments = "allow"
+
+type_id_on_box = "deny"
+missing_transmute_annotations = "deny"
+
+[lints]
+workspace = true
+
+[package]
+name = "voker"
+exclude = [".github"]
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+voker-internal = { path = "./crates/voker-internal", default-features = false }
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+voker-dylib = { path = "./crates/voker-dylib", default-features = false, optional = true }
+
+[features]
+
+default = []
+
+# support std
+std = ["voker-internal/std"]
+
+# Output the type name and file location information in the log.
+debug = ["voker-internal/debug"]
+
+# Track stack information during serialization and error handling.
+# Need to enable `std`.
+backtrace = ["voker-internal/backtrace"]
+
+# Enable dynamic linking
+dylib = ["dep:voker-dylib", "voker-internal/dylib"]

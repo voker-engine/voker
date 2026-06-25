@@ -1,0 +1,22 @@
+[package]
+name = "voker-internal"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[features]
+
+default = [ "std", "debug", "backtrace" ]
+
+std = []
+
+debug = []
+
+backtrace = ["std"]
+
+dynlib = []
+
+[lints]
+workspace = true

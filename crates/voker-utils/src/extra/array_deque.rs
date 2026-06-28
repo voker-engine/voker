@@ -430,9 +430,7 @@ impl<T, const N: usize> ArrayDeque<T, N> {
         let idx = (self.tail + N - self.len + index) % N;
         let ptr = self.slots.as_ptr();
 
-        unsafe {
-            Some(&*ptr.add(idx).cast::<T>())
-        }
+        unsafe { Some(&*ptr.add(idx).cast::<T>()) }
     }
 
     /// Returns a mutable reference to the element at logical index `index`.
@@ -446,9 +444,7 @@ impl<T, const N: usize> ArrayDeque<T, N> {
         let idx = (self.tail + N - self.len + index) % N;
         let ptr = self.slots.as_mut_ptr();
 
-        unsafe {
-            Some(&mut *ptr.add(idx).cast::<T>())
-        }
+        unsafe { Some(&mut *ptr.add(idx).cast::<T>()) }
     }
 
     /// Returns `true` if the deque contains an element equal to `value`.

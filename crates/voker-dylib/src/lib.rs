@@ -10,6 +10,9 @@
 //! feature and excluded on `wasm` targets, where dynamic linking is unavailable.
 #![no_std]
 
-#[expect(unused_imports, reason = "Force linking to keep it from being stripped")]
+#[expect(
+    unused_imports,
+    reason = "Force linking to keep it from being stripped"
+)]
 #[expect(clippy::single_component_path_imports, reason = "Keep dylib linked.")]
 use voker_internal;

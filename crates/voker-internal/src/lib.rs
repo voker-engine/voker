@@ -9,4 +9,5 @@
 //! [`voker`]: https://github.com/voker-engine/voker
 #![no_std]
 
+pub use voker_reg as reg;
 pub use voker_utils as utils;

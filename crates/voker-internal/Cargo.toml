@@ -23,4 +23,5 @@ workspace = true
 
 [dependencies]
 
+voker-reg = { path = "../voker-reg", default-features = false }
 voker-utils = { path = "../voker-utils", default-features = false }

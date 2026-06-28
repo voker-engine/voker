@@ -69,7 +69,9 @@ macro_rules! impl_non_max {
 
         impl Clone for $NonMax {
             #[inline(always)]
-            fn clone(&self) -> Self { *self }
+            fn clone(&self) -> Self {
+                *self
+            }
         }
 
         impl $NonMax {
@@ -260,7 +262,7 @@ macro_rules! impl_non_max {
                 D: serde_core::Deserializer<'de>,
             {
                 let value = <$Int as serde_core::Deserialize>::deserialize(deserializer)?;
-                
+
                 Self::new(value).ok_or_else(|| {
                     core::hint::cold_path();
                     serde_core::de::Error::invalid_value(

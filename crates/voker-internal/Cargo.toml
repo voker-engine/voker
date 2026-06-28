@@ -16,7 +16,11 @@ debug = []
 
 backtrace = ["std"]
 
-dynlib = []
+dylib = []
 
 [lints]
 workspace = true
+
+[dependencies]
+
+voker-utils = { path = "../voker-utils", default-features = false }

@@ -1,0 +1,27 @@
+[package]
+name = "voker-utils"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+
+# Serialize and Deserialize support
+serde_core = { version = "1", default-features = false, features = ["alloc"] }
+
+# Small Buffer Optimized Vector
+fastvec = { version = "2.0", default-features = false, features = ["arrayvec", "fastvec", "smallvec", "serde"] }
+
+# Small Buffer Optimized String
+smol_str = { version = "0.3.6", default-features = false, features = ["serde"] }
+
+# Fixed Hasher
+foldhash = { version = "0.2.0", default-features = false }
+
+# Hash Container
+hashbrown = { version = "0.17", default-features = false, features = ["equivalent", "serde"] }
+
+[lints]
+workspace = true

@@ -1,0 +1,35 @@
+# Platform independent extensions
+
+Platform-agnostic utility crate for collection primitives,
+hashing helpers, index containers, and small no_std-friendly helpers.
+
+## Crate Layout
+
+### `hash`
+- Hash builders and hash container aliases.
+- Re-exports and wrappers around `hashbrown` / `foldhash`.
+- Includes fixed-hash, sparse-hash, and no-op hash variants.
+
+### `vec`
+- Vector implementations for different storage/performance strategies.
+- Includes `ArrayVec`, `SmallVec`, and `FastVec`.
+
+### `extra`
+- Additional utility containers and data structures.
+- Includes `ArrayDeque`, `BlockList`, `BloomFilter`, `PagePool`, and `TypeIdMap`.
+
+### `num`
+- Numeric helper types.
+- Includes `NonMax` wrappers (niche-value optimization style helpers).
+
+### `smol`
+- Small buffer optimized string, re-export `smol_str` crate.
+
+### Macros
+
+- `range_invoke`: Macro utility for repeated range-based invocation.
+
+## Notes
+
+- The crate targets `no_std` + `alloc` usage patterns.
+- For thread-safe and OS-dependent utilities, use `voker-os`.

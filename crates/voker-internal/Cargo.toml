@@ -18,10 +18,12 @@ backtrace = ["std"]
 
 dylib = []
 
-[lints]
-workspace = true
-
 [dependencies]
 
+voker-ptr = { path = "../voker-ptr", default-features = false }
 voker-reg = { path = "../voker-reg", default-features = false }
+
 voker-utils = { path = "../voker-utils", default-features = false }
+
+[lints]
+workspace = true

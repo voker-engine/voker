@@ -857,7 +857,7 @@ mod tests {
             static $s: AtomicUsize = AtomicUsize::new(0);
 
             struct $t;
-            
+
             impl Drop for $t {
                 fn drop(&mut self) {
                     $s.fetch_add(1, Ordering::SeqCst);

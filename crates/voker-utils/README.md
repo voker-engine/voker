@@ -25,6 +25,9 @@ hashing helpers, index containers, and small no_std-friendly helpers.
 ### `smol`
 - Small buffer optimized string, re-export `smol_str` crate.
 
+### `exp`
+- Temporary replacement of experimental content in the standard library.
+
 ### Macros
 
 - `range_invoke`: Macro utility for repeated range-based invocation.

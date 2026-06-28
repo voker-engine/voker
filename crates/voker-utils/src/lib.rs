@@ -11,6 +11,7 @@ extern crate alloc;
 
 mod range_invoke;
 
+pub mod exp;
 pub mod extra;
 pub mod hash;
 pub mod num;

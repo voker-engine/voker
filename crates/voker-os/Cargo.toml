@@ -1,0 +1,37 @@
+[package]
+name = "voker-os"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[features]
+default = ["std"]
+
+std = ["portable-atomic/std"]
+
+[dependencies]
+
+[target.'cfg(not(all(target_has_atomic = "8", target_has_atomic = "16", target_has_atomic = "32", target_has_atomic = "64")))'.dependencies]
+portable-atomic = { version = "1", default-features = false, features = ["fallback"] }
+
+[target.'cfg(target_family = "wasm")'.dependencies]
+js-sys = { version = "0.3", default-features = false, optional = true, features = ["std"] }
+web-time = { version = "1.1", default-features = false, optional = true, features = ["serde"] }
+wasm-bindgen = { version = "0.2", default-features = false, optional = true, features = ["std"] }
+wasm-bindgen-futures = { version = "0.4", default-features = false, optional = true, features = ["std"] }
+
+[target.'cfg(target_family = "windows")'.dependencies]
+windows-sys = { version = ">= 0.59.0", features = [
+  "Win32_UI_Shell",
+  "Win32_Foundation",
+  "Win32_Globalization",
+  "Win32_System_Com",
+] }
+
+[target.'cfg(target_os = "android")'.dependencies]
+android-activity = "0.6"
+
+[lints]
+workspace = true

@@ -1,3 +1,4 @@
+#![doc = include_str!("../README.md")]
 #![no_std]
 
 // -----------------------------------------------------------------------------
@@ -33,7 +34,4 @@ pub mod exports {
 
     #[cfg(target_family = "wasm")]
     pub use wasm_bindgen;
-
-    #[cfg(target_family = "wasm")]
-    pub use wasm_bindgen_futures;
 }

@@ -8,13 +8,9 @@ repository.workspace = true
 
 [features]
 
-default = [ "std", "debug", "backtrace" ]
+default = [ "std" ]
 
 std = []
-
-debug = []
-
-backtrace = ["std"]
 
 dylib = []
 

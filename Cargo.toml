@@ -55,12 +55,5 @@ default = []
 # support std
 std = ["voker-internal/std"]
 
-# Output the type name and file location information in the log.
-debug = ["voker-internal/debug"]
-
-# Track stack information during serialization and error handling.
-# Need to enable `std`.
-backtrace = ["voker-internal/backtrace"]
-
 # Enable dynamic linking
 dylib = ["dep:voker-dylib", "voker-internal/dylib"]

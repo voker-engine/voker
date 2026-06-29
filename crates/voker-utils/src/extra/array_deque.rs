@@ -807,6 +807,21 @@ mod tests {
 
     use super::ArrayDeque;
 
+    macro_rules! define_tracker {
+        ($n:ident, $t:ident) => {
+            static $n: AtomicUsize = AtomicUsize::new(0);
+
+            #[derive(Debug)]
+            struct $t;
+
+            impl Drop for $t {
+                fn drop(&mut self) {
+                    $n.fetch_add(1, Ordering::SeqCst);
+                }
+            }
+        };
+    }
+
     #[test]
     fn is_sync_send() {
         use core::panic::{RefUnwindSafe, UnwindSafe};
@@ -825,16 +840,7 @@ mod tests {
     #[test]
     fn drop_contiguous() {
         use core::sync::atomic::{AtomicUsize, Ordering};
-
-        static DROPS: AtomicUsize = AtomicUsize::new(0);
-        #[derive(Debug)]
-        struct Tracker;
-        impl Drop for Tracker {
-            fn drop(&mut self) {
-                DROPS.fetch_add(1, Ordering::SeqCst);
-            }
-        }
-
+        define_tracker!(DROPS, Tracker);
         DROPS.store(0, Ordering::SeqCst);
 
         {
@@ -852,16 +858,7 @@ mod tests {
     #[test]
     fn drop_full() {
         use core::sync::atomic::{AtomicUsize, Ordering};
-
-        static DROPS: AtomicUsize = AtomicUsize::new(0);
-        #[derive(Debug)]
-        struct Tracker;
-        impl Drop for Tracker {
-            fn drop(&mut self) {
-                DROPS.fetch_add(1, Ordering::SeqCst);
-            }
-        }
-
+        define_tracker!(DROPS, Tracker);
         DROPS.store(0, Ordering::SeqCst);
 
         {
@@ -881,16 +878,7 @@ mod tests {
     #[test]
     fn drop_wrapped() {
         use core::sync::atomic::{AtomicUsize, Ordering};
-
-        static DROPS: AtomicUsize = AtomicUsize::new(0);
-        #[derive(Debug)]
-        struct Tracker;
-        impl Drop for Tracker {
-            fn drop(&mut self) {
-                DROPS.fetch_add(1, Ordering::SeqCst);
-            }
-        }
-
+        define_tracker!(DROPS, Tracker);
         DROPS.store(0, Ordering::SeqCst);
 
         {
@@ -918,16 +906,7 @@ mod tests {
     #[test]
     fn drop_clear_pop() {
         use core::sync::atomic::{AtomicUsize, Ordering};
-
-        static DROPS: AtomicUsize = AtomicUsize::new(0);
-        #[derive(Debug)]
-        struct Tracker;
-        impl Drop for Tracker {
-            fn drop(&mut self) {
-                DROPS.fetch_add(1, Ordering::SeqCst);
-            }
-        }
-
+        define_tracker!(DROPS, Tracker);
         DROPS.store(0, Ordering::SeqCst);
 
         let mut deque: ArrayDeque<Tracker, 6> = ArrayDeque::new();

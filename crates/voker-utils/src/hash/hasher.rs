@@ -267,6 +267,7 @@ mod tests {
     #[test]
     fn noop_typeid_hash() {
         struct TestNoopHasher(u64);
+
         impl Hasher for TestNoopHasher {
             fn finish(&self) -> u64 {
                 self.0

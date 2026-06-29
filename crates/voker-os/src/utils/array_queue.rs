@@ -2,7 +2,7 @@
 //!
 //! See <https://docs.rs/crate/crossbeam-queue/latest>
 //!
-//! - Version: 0.8.4
+//! - Version: 0.3.12
 //! - Date: 2026/04/01
 #![expect(unsafe_code, reason = "from crossbeam-queue")]
 
